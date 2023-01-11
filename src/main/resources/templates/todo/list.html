@@ -2,52 +2,64 @@
 <!-- (1) -->
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>Todo List</title>
-  <!-- (2) -->
-  <link rel="stylesheet"
-        href="../../../resources/app/css/styles.css" th:href="@{/css/styles.css}">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Todo List</title>
+    <!-- (2) -->
+    <link rel="stylesheet"
+          href="../../../resources/app/css/styles.css" th:href="@{/css/styles.css}">
 </head>
 <body>
 <h1>Todo List</h1>
 <div id="todoForm">
-  <form action="/todo/create" method="post">
-    <input type="text">
-    <button>Create Todo</button>
-  </form>
+    <!--(1)-->
+    <div th:if="${resultMessages} != null" class="alert alert-success" th:clas="|alert alert-${resultMessages.type}|">
+      <ul>
+        <li th:each="message : ${resultMessages}" th:text="${messages.text}">Created successfully!</li>
+      </ul>
+    </div>
+    <!--(2)-->
+    <form action="todo/create" th:action="@{/todo/create}" method = "post">
+        <!--(3)-->
+        <input type="text" th:faild="${todoForm.todoTitle}">
+        <!--(4)-->
+        <span th:errors="${todoForm.todoTitle}" class="text-error">
+            size must be between 1 and 30
+        </span>
+        <button>Create Todo</button>
+    </form>
 </div>
 <hr>
 <div id="todoList">
-  <!-- (3) -->
-  <ul th:remove="all-but-first">
-    <!-- (4) -->
-    <li th:each="todo : ${todos}">
-      <!-- (5)(6) -->
-      <span th:class="${todo.finished} ? 'strike'" th:text="${todo.todoTitle}">Send a e-mail</span>
-      <!-- (7) -->
-      <form th:if="${!todo.finished}" action="/todo/finish" method="post" class="inline">
-        <button>Finish</button>
-      </form>
-      <form action="/todo/delete" method="post" class="inline">
-        <button>Delete</button>
-      </form>
-    </li>
-    <li>
-      <span>Have a lunch</span>
-      <form action="/todo/finish" method="post" class="inline">
-        <button>Finish</button>
-      </form>
-      <form action="/todo/delete" method="post" class="inline">
-        <button>Delete</button>
-      </form>
-    </li>
-    <li>
-      <span class="strike">Read a book</span>
-      <form action="/todo/delete" method="post" class="inline">
-        <button>Delete</button>
-      </form>
-    </li>
-  </ul>
+    <!-- (3) -->
+    <ul th:remove="all-but-first">
+        <!-- (4) -->
+        <li th:each="todo : ${todos}">
+            <!-- (5)(6) -->
+            <span th:class="${todo.finished} ? 'strike'" th:text="${todo.todoTitle}">Send a e-mail</span>
+            <!-- (7) -->
+            <form th:if="${!todo.finished}" action="/todo/finish" method="post" class="inline">
+                <button>Finish</button>
+            </form>
+            <form action="/todo/delete" method="post" class="inline">
+                <button>Delete</button>
+            </form>
+        </li>
+        <li>
+            <span>Have a lunch</span>
+            <form action="/todo/finish" method="post" class="inline">
+                <button>Finish</button>
+            </form>
+            <form action="/todo/delete" method="post" class="inline">
+                <button>Delete</button>
+            </form>
+        </li>
+        <li>
+            <span class="strike">Read a book</span>
+            <form action="/todo/delete" method="post" class="inline">
+                <button>Delete</button>
+            </form>
+        </li>
+    </ul>
 </div>
 </body>
 </html>
