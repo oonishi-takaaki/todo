@@ -15,10 +15,11 @@
         </ul>
     </div>
     <form action="/todo/create" th:action="@{/todo/create}" method="post">
-        <input type="text" th:field="${todoForm.todoTitle}">
+        <input type="text">
         <span th:errors="${todoForm.todoTitle}" class="text-error">
             size must be between 1 and 30
         </span>
+        <input type="date" th:field="${todoForm.todoKigen}">
         <button>Create Todo</button>
     </form>
 </div>

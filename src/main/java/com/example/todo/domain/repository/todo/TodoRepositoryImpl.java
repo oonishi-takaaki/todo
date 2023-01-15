@@ -1,12 +1,11 @@
 package com.example.todo.domain.repository.todo;
 
+import com.example.todo.domain.model.Todo;
+import org.springframework.stereotype.Repository;
+
 import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-
-import org.springframework.stereotype.Repository;
-
-import com.example.todo.domain.model.Todo;
 
 @Repository
 public class TodoRepositoryImpl implements TodoRepository {
@@ -24,7 +23,9 @@ public class TodoRepositoryImpl implements TodoRepository {
 
     @Override
     public void create(Todo todo){
+
         TODO_MAP.put(todo.getTodoId(), todo);
+        TODO_MAP.put(String.valueOf(todo.getKigen()), todo);
     }
     @Override
     public boolean update(Todo todo){
