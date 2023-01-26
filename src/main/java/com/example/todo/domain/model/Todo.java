@@ -9,8 +9,8 @@ public class Todo implements Serializable {
     private String todoId;
     private String todoTitle;
     private boolean finished;
-    private Date createdAt;
-    private Date todoKigen;
+    private Date created_At;
+    private Date Kigen;
 
     public String getTodoId() {
         return todoId;
@@ -37,19 +37,19 @@ public class Todo implements Serializable {
     }
 
     public Date getCreatedAt() {
-        return createdAt;
+        return created_At;
     }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
+    public void setCreatedAt(Date created_At) {
+        this.created_At = created_At;
     }
 
     public Date getTodoKigen() {
-        return todoKigen;
+        return Kigen;
     }
 
-    public void settodoKigen(Date todoKigen) {
-        this.todoKigen = todoKigen;
+    public void settodoKigen(Date Kigen) {
+        this.Kigen = Kigen;
     }
 
 }

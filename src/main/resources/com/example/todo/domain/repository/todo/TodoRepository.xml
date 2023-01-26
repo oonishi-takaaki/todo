@@ -19,7 +19,6 @@
                 finished,
                 created_at,
                 Kigen
-
             FROM
                 todo
             WHERE
@@ -52,9 +51,9 @@
         VALUES
         (
             #{todoId},
-            #{todoTitle}
-            #{finished}
-            #{created_At}
+            #{todoTitle},
+            #{finished},
+            #{created_At},
             #{Kigen}
         )
         ]]>
